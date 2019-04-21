@@ -1,0 +1,87 @@
+* {
+    box-sizing: border-box;
+}
+    body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Quicksand', sans-serif;
+    }
+
+    .finder {
+    background-image: url('./bikestation.jpg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    height: 300px;
+    }
+
+    .finder > h1 {
+        font-family: 'Comfortaa', cursive;
+        text-align: center;
+        color: rgb(16, 16, 163);
+        background: rgba(255, 255, 255, 0.8);
+        padding-top: .2em;
+        margin-top: .2em;
+    }
+
+    .search {
+        width: 50%;
+        font-size: 20px;
+        background-color: rgba(255, 255, 255, 0.803);
+        padding: .5em;
+        margin: 0 auto;
+    }
+
+    .warning {
+        display: none;
+    }
+
+    .address-box {
+        width: 350px;
+        height: 52px;
+        font-size: 20px;
+        padding-left: 1em;
+    }
+
+    input[type=checkbox] {
+        -ms-transform: scale(2); /* IE */
+        -moz-transform: scale(2); /* FF */
+        -webkit-transform: scale(2); /* Safari and Chrome */
+        -o-transform: scale(2); /* Opera */
+        margin-left: 1em;
+        margin-right: .5em;
+    }
+
+    input[type=submit] {
+        background-color: rgb(16, 16, 163);
+        border: none;
+        color: white;
+        padding: 14px 30px;
+        text-decoration: none;
+        margin: 4px 2px;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    fieldset > span {
+        margin-left: 40px;
+    }
+    
+    label {
+        padding-right: .5em;
+    }
+    
+    .weather {
+        width: 100%;
+        text-align: center;
+    }
+   main {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+    #map {
+        height: 500px;
+        margin: .5em;
+    }
