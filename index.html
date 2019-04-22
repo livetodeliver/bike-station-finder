@@ -7,17 +7,17 @@
     <title>Philly Bikeshare Station Finder</title>
 
     <link rel="stylesheet" href="index.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa:600|Oxygen|Quicksand" rel="stylesheet">
+   <link href="https://fonts.googleapis.com/css?family=Comfortaa:600|Oxygen|Quicksand" rel="stylesheet"> 
 </head>
 <body>
 <header role="search" class="finder">
         <h1>Philly Bikeshare Station Finder</h1>
-    <form class="search" role="checkbox">
+    <form id="search" role="checkbox">
         <fieldset>
                 <legend>Find a Station</legend>
                 <span>I need to:</span>
-                    <input type="checkbox" role="checkbox"> <label>get a bike</label>
-                    <input type="checkbox" role="checkbox"> <label>return a bike</label>
+                    <input type="checkbox" role="checkbox" id="bike-get"> <label>get a bike</label>
+                    <input type="checkbox" role="checkbox" id="bike-return"> <label>return a bike</label>
             
             <p>
                 <input role="textbox" type="text" placeholder="Enter address or intersecton" autocomplete="on" class="address-box">
@@ -40,8 +40,7 @@
 
 </main>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
-    <script src="index.js"></script>
+    <script src="index.js"></script> 
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDanp51JCnLBcnY84k2mSDg03OGvTXBdF8&callback=initMap">
     </script>
