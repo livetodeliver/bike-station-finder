@@ -33,11 +33,45 @@ function getBike() {
 };
 
 
-
-
-function getWeather() {
     // This function called the Open Weather Map API to display weather of address.
-}
+function getWeather( cityID ) {
+        const key = '5a4c2852796dfbb1add54c9a1eeb93b4';
+        fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID+ '&appid=' + key)  
+        .then(function(resp) { return resp.json() }) // Convert data to json
+        .then(function(data) {
+          drawWeather(data);
+        })
+        .catch(function() {
+          // catch any errors
+        });
+      }
+      function drawWeather( d ) {
+        var celcius = Math.round(parseFloat(d.main.temp)-273.15);
+        var fahrenheit = Math.round(((parseFloat(d.main.temp)-273.15)*1.8)+32); 
+        var description = d.weather[0].description;
+        var weatherIcon = '<img src="http://openweathermap.org/img/w/' + d.weather[0].icon + '.png"/>'
+
+        console.log(d.weather[0].icon);
+        console.log(weatherIcon);
+
+        document.getElementById('location').innerHTML = d.name;
+        document.getElementById('description').innerHTML = d.weather[0].description;
+        document.getElementById('temp').innerHTML = fahrenheit + '&deg;F';
+        document.getElementById('icon').innerHTML = weatherIcon;
+
+        if( description.indexOf('rain') > 0 ) {
+            document.weather.id = 'rainy';
+        } else if( description.indexOf('cloud') > 0 ) {
+            document.weather.id = 'cloudy';
+        } else if( description.indexOf('sunny') > 0 ) {
+            document.weather.id = 'sunny';
+        }
+    }
+      
+      window.onload = function() {
+        getWeather( 4560349 );
+      }
+
 
 function weatherAlert() {
     // This function display a weather alert for hazardous conditions

@@ -1,87 +1,125 @@
 * {
     box-sizing: border-box;
 }
-    body {
+
+body {
     margin: 0;
     padding: 0;
     font-family: 'Quicksand', sans-serif;
-    }
+}
 
-    .finder {
+.finder {
     background-image: url('./bikestation.jpg');
     background-size: 100%;
     background-repeat: no-repeat;
     background-position-y: center;
     height: 300px;
-    }
+}
 
-    .finder > h1 {
-        font-family: 'Comfortaa', cursive;
-        text-align: center;
-        color: rgb(16, 16, 163);
-        background: rgba(255, 255, 255, 0.8);
-        padding-top: .2em;
-        margin-top: .2em;
-    }
+.finder>h1 {
+    font-family: 'Comfortaa', cursive;
+    text-align: center;
+    color: rgb(16, 16, 163);
+    background: rgba(255, 255, 255, 0.8);
+    padding-top: .2em;
+    margin-top: .2em;
+}
 
-    #search {
-        width: 50%;
-        font-size: 20px;
-        background-color: rgba(255, 255, 255, 0.803);
-        padding: .5em;
-        margin: 0 auto;
-    }
+#search {
+    width: 50%;
+    font-size: 20px;
+    background-color: rgba(255, 255, 255, 0.803);
+    padding: .5em;
+    margin: 0 auto;
+}
 
-    .warning {
-        display: none;
-    }
+.warning {
+    display: none;
+}
 
-    #address-box {
-        width: 350px;
-        height: 52px;
-        font-size: 20px;
-        padding-left: 1em;
-    }
+#address-box {
+    width: 350px;
+    height: 52px;
+    font-size: 20px;
+    padding-left: 1em;
+}
 
-    input[type=checkbox] {
-        -ms-transform: scale(2); /* IE */
-        -moz-transform: scale(2); /* FF */
-        -webkit-transform: scale(2); /* Safari and Chrome */
-        -o-transform: scale(2); /* Opera */
-        margin-left: 1em;
-        margin-right: .5em;
-    }
+input[type=checkbox] {
+    -ms-transform: scale(2);
+    /* IE */
+    -moz-transform: scale(2);
+    /* FF */
+    -webkit-transform: scale(2);
+    /* Safari and Chrome */
+    -o-transform: scale(2);
+    /* Opera */
+    margin-left: 1em;
+    margin-right: .5em;
+}
 
-    #submit {
-        background-color: rgb(16, 16, 163);
-        border: none;
-        color: white;
-        padding: 14px 30px;
-        text-decoration: none;
-        margin: 4px 2px;
-        cursor: pointer;
-        font-size: 18px;
-    }
+#submit {
+    background-color: rgb(16, 16, 163);
+    border: none;
+    color: white;
+    padding: 14px 30px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+    font-size: 18px;
+}
 
-    fieldset > span {
-        margin-left: 40px;
-    }
-    
-    label {
-        padding-right: .5em;
-    }
-    
-    .weather {
-        width: 100%;
-        text-align: center;
-    }
-   main {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
+fieldset>span {
+    margin-left: 40px;
+}
 
-    #map {
-        height: 500px;
-        margin: .5em;
-    }
+label {
+    padding-right: .5em;
+}
+
+#weather {
+    width: 100%;
+    font-family: 'Oxygen', sans-serif;
+    font-weight: 400;
+    font-size: 1.2em;
+    color: #fff;
+    text-shadow: .1em .1em 0 rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: linear-gradient(to right top, #99bbcb, #a5c7d7, #b1d4e2, #bde0ee, #c9edfa);
+}
+
+
+
+#weather > h1 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding-left: 1em;
+    padding-right: 1em;
+    font-size: 1.8em;
+    text-align: center;
+    color: #fff;
+}
+
+#weather.sunny {
+    background-image: linear-gradient(to right top, #ff4e50, #ff713e, #ff932b, #ffb41d, #f9d423);
+}
+
+#weather.cloudy {
+    background-image: linear-gradient(to right top, #63747c, #71858e, #7f96a0, #8da8b2, #9bbac5);
+}
+
+#weather.rainy {
+    background-image: linear-gradient(to right top, #637c7b, #718e8c, #7ea09e, #8db2b0, #9bc5c3);
+}
+
+main {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#map {
+    height: 500px;
+    margin: .5em;
+}

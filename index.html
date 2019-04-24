@@ -7,43 +7,51 @@
     <title>Philly Bikeshare Station Finder</title>
 
     <link rel="stylesheet" href="index.css" type="text/css" />
-   <link href="https://fonts.googleapis.com/css?family=Comfortaa:600|Oxygen|Quicksand" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:600|Oxygen|Quicksand" rel="stylesheet">
 </head>
+
 <body>
-<header role="search" class="finder">
+    <header role="search" class="finder">
         <h1>Philly Bikeshare Station Finder</h1>
-    <form id="search" role="checkbox">
-        <fieldset>
+        <form id="search" role="checkbox">
+            <fieldset>
                 <legend>Find a Station</legend>
                 <span>I need to:</span>
-                    <input type="checkbox" role="checkbox" id="bike-get"> <label>get a bike</label>
-                    <input type="checkbox" role="checkbox" id="bike-return"> <label>return a bike</label>
-            
-            <p>
-                <input role="textbox" type="text" placeholder="Enter address or intersecton" autocomplete="on" id="address-box">
-                <input type="button" value="Submit" id="submit"></input>
-            </p>
-        </fieldset>
-    </form>
-    </div>
-    <div role="complementary" class="weather" ></div>
-</header>  
-<section role="banner" class="weather">
-    <h3>Weather Goes Here</h3>
-</section>
-<section role="alert" class="warning">
-    <h3>Weather Warning: Hazardous Riding Conditions</h3>
-</section>
-<main role="main">
+                <input type="checkbox" role="checkbox" id="bike-get"> <label>get a bike</label>
+                <input type="checkbox" role="checkbox" id="bike-return"> <label>return a bike</label>
+
+                <p>
+                    <input role="textbox" type="text" placeholder="Enter address or intersecton" autocomplete="on"
+                        id="address-box">
+                    <input type="button" value="Submit" id="submit"></input>
+                </p>
+            </fieldset>
+        </form>
+        </div>
+        <div role="complementary" class="weather"></div>
+    </header>
+    <section role="banner" id="weather">
+                <div role="complementary" id="location"></div>
+                <h1 id="temp"></h1>
+                <div role="complementary" id="icon"></div>
+                <div role="complementary" id="description"></div>
+                       
+    
+                
+    </section>
+    <section role="alert" class="warning">
+        <h3>Weather Warning: Hazardous Riding Conditions</h3>
+    </section>
+    <main role="main">
         <div id="map"></div>
-</main>
+    </main>
 
-</main>
+    </main>
 
-    <script src="index.js"></script> 
+    <script src="index.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDanp51JCnLBcnY84k2mSDg03OGvTXBdF8&callback=initMap">
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDanp51JCnLBcnY84k2mSDg03OGvTXBdF8&callback=initMap">
     </script>
 </body>
 
