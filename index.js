@@ -1,31 +1,27 @@
-function findStations() {
-    // This function will zoom in to map based on submitted address or location.
-}; 
+//'use strict';
 
 function returnBike() {
     // This function will filter markers to only display stations with open docks
     // Eventlistener toggle click/check (submit does not need to be pressed)
-    if ((document.getElementById("bike-return").checked = true) && (docksAvailable === 0)) {
+    /*if ((document.getElementById("bike-return").checked = true) && (docksAvailable === 0)) {
         for (var i = 0; i < features.length; i++)
           map.data.remove(features[i]);
-    }
+
+          returnBike.addEventListener( 'change', function() {
+            if(this.checked) {
+                // Checkbox is checked..
+            } */
+    
 };
 
 function getBike() {
      // This function will filter markers to only display stations with available bikes
     // Eventlistener toggle click/check (submit does not need to be pressed)
-    if ((document.getElementById("bike-get").checked = true) && (bikesAvailable === 0)) {
+   /*if ((document.getElementById("bike-get").checked = true) && (bikesAvailable === 0)) {
         for (var i = 0; i < features.length; i++)
           map.data.remove(features[i]);
-    } 
-};
 
-
-
-
-
-  
-   /* let getBike = document.querySelector("#bike-get");
+          let getBike = document.querySelector("#bike-get");
     let returnBike = document.querySelector("#bike-return")
 
     getBike.addEventListener( 'change', function() {
@@ -33,15 +29,9 @@ function getBike() {
             
         
     };
+    } */
+};
 
-
-    returnBike.addEventListener( 'change', function() {
-        if(this.checked) {
-            // Checkbox is checked..
-        } */
-
-    // This function will filter markers to only display stations with available bikes
-    // Eventlistener toggle click/check (submit does not need to be pressed)
 
 
 
@@ -54,10 +44,13 @@ function weatherAlert() {
 } 
 
 
+
+
 function initMap() {
 
     // Creates map and centers it on Philadelphia
-    map = new google.maps.Map(document.getElementById('map'), {
+
+    let map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
         center: {
             lat: 39.95378,
@@ -65,8 +58,14 @@ function initMap() {
         }
     });
 
+    var geocoder = new google.maps.Geocoder();
+
+    document.getElementById('submit').addEventListener('click', function() {
+      geocodeAddress(geocoder, map);
+    });
+
     // Adds bike route layer to map
-    var bikeLayer = new google.maps.BicyclingLayer();
+    let bikeLayer = new google.maps.BicyclingLayer();
     bikeLayer.setMap(map);
 
     // Event listener for closing the infowindow
@@ -74,7 +73,7 @@ function initMap() {
         infowindow.close();
     });
 
-    // Sets map market icons to cycling icon
+    // Sets map marker icons to cycling icon
     map.data.setStyle({
         icon: './cycling.png',
         clickable: true,
@@ -96,9 +95,51 @@ function initMap() {
         infowindow.open(map);
     });
 
-    // Loads GeoJSON data from Indego 
+      // Loads GeoJSON data from Indego 
     map.data.loadGeoJson('https://www.rideindego.com/stations/json/');
-    
-    google.maps.event.addDomListener(window, 'load', initMap);
 
-}  
+    google.maps.event.addDomListener(window, 'load', initMap);
+}; 
+
+function geocodeAddress(geocoder, resultsMap) {
+    
+    var address = document.getElementById('address-box').value;
+   // debugger;
+console.log('HIIIIIII EVERYONE');
+
+
+
+geocoder.geocode({'address': address}, function(results, status) {
+  if (status === 'OK') {
+    resultsMap.setCenter(results[0].geometry.location);
+    resultsMap.setZoom(15);
+    
+     marker = new google.maps.Marker({
+      map: resultsMap,
+      draggable: true,
+      icon: {
+    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"},
+          animation: google.maps.Animation.DROP,
+      position: results[0].geometry.location,
+    });
+    marker.addListener('click', toggleBounce);
+  } else {
+    alert('Geocode was not successful for the following reason: ' + status);
+  }
+});
+
+}
+
+function toggleBounce() {
+    if (marker.getAnimation() !== null) {
+      marker.setAnimation(null);
+    } else {
+      marker.setAnimation(google.maps.Animation.BOUNCE);
+    }
+  }
+  
+   
+ 
+   
+
+    

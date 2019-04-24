@@ -36,7 +36,7 @@
         display: none;
     }
 
-    .address-box {
+    #address-box {
         width: 350px;
         height: 52px;
         font-size: 20px;
@@ -52,7 +52,7 @@
         margin-right: .5em;
     }
 
-    input[type=submit] {
+    #submit {
         background-color: rgb(16, 16, 163);
         border: none;
         color: white;
