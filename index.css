@@ -33,8 +33,9 @@ body {
     margin: 0 auto;
 }
 
-.warning {
-    display: none;
+#warning {
+    width: 100%;
+    height: 100px;
 }
 
 #address-box {

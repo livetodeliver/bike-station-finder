@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="index.css" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Comfortaa:600|Oxygen|Quicksand" rel="stylesheet">
+    <script src="https://cdnres.willyweather.com/widget/warning/loadView.html?id=107676" type="application/javascript"></script>
 </head>
 
 <body>
@@ -21,7 +22,7 @@
                 <input type="checkbox" role="checkbox" id="bike-return"> <label>return a bike</label>
 
                 <p>
-                    <input role="textbox" type="text" placeholder="Enter address or intersecton" autocomplete="on"
+                    <input role="textbox" type="text" placeholder="Enter address or intersection" autocomplete="on"
                         id="address-box">
                     <input type="button" value="Submit" id="submit"></input>
                 </p>
@@ -39,8 +40,8 @@
     
                 
     </section>
-    <section role="alert" class="warning">
-        <h3>Weather Warning: Hazardous Riding Conditions</h3>
+    <section role="alert" id="warning">
+            
     </section>
     <main role="main">
         <div id="map"></div>
