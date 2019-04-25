@@ -3,50 +3,52 @@
 
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes" />
     <title>Philly Bikeshare Station Finder</title>
 
     <link rel="stylesheet" href="index.css" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Comfortaa:600|Oxygen|Quicksand" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:600|Oxygen|Quicksand:700" rel="stylesheet">
     <script src="https://cdnres.willyweather.com/widget/warning/loadView.html?id=107676" type="application/javascript"></script>
 </head>
 
 <body>
-    <header role="search" class="finder">
-        <h1>Philly Bikeshare Station Finder</h1>
-        <form id="search" role="checkbox">
-            <fieldset>
-                <legend>Find a Station</legend>
-                <span>I need to:</span>
-                <input type="checkbox" role="checkbox" id="bike-get"> <label>get a bike</label>
-                <input type="checkbox" role="checkbox" id="bike-return"> <label>return a bike</label>
-
-                <p>
-                    <input role="textbox" type="text" placeholder="Enter address or intersection" autocomplete="on"
-                        id="address-box">
-                    <input type="button" value="Submit" id="submit"></input>
-                </p>
-            </fieldset>
-        </form>
-        </div>
-        <div role="complementary" class="weather"></div>
-    </header>
     <section role="banner" id="weather">
-                <div role="complementary" id="location"></div>
-                <h1 id="temp"></h1>
-                <div role="complementary" id="icon"></div>
-                <div role="complementary" id="description"></div>
-                       
-    
-                
+            <div role="complementary" id="location"></div>
+            <h1 id="temp"></h1>
+            <div role="complementary" id="icon"></div>
+            <div role="complementary" id="description"></div>
     </section>
+
     <section role="alert" id="warning">
-            
-    </section>
+            <h3>WEATHER WARNING: HAZARDOUS RIDING CONDITIONS</h3>
+        </section>
+   
+        
+    <section role="search" class="finder">
+   
+         
+        <form id="search" role="form">
+                <h1>Philly Bikeshare Station Finder</h1>
+                <fieldset>
+                    <legend>Find a Station</legend>
+                    <span>I need to:</span>
+
+                    <input type="checkbox" role="checkbox" id="bike-get"> <label>get a bike</label>
+                    <input type="checkbox" role="checkbox" id="bike-return"> <label>return a bike</label>
+    
+                    <p>
+                        <div id="search-bar">
+                        <input role="textbox" type="text" placeholder="Enter address or intersection" autocomplete="on"
+                            id="address-box">
+                        <input type="button" value="Submit" id="submit"></input>
+                        </div>
+                    </p>
+                </fieldset>
+            </form>
+        </section>
+    
     <main role="main">
         <div id="map"></div>
-    </main>
-
     </main>
 
     <script src="index.js"></script>

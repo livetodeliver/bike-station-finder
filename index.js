@@ -12,7 +12,7 @@ function returnBike() {
                 // Checkbox is checked..
             } */
 
-};
+}
 
 function getBike() {
     // This function will filter markers to only display stations with available bikes
@@ -28,7 +28,7 @@ function getBike() {
          if(this.checked) {
      };
      } */
-};
+}
 
 //WEATHER 
 
@@ -41,7 +41,7 @@ function getWeather(cityID) {
         }) // Convert data to json
         .then(function (data) {
             drawWeather(data);
-            weatherAlert(data);
+            //weatherAlert(data);
         })
         .catch(function () {
             // catch any errors
@@ -50,13 +50,17 @@ function getWeather(cityID) {
 
 //This function should check the hazCond array to see if any of the values match the current weather id value. 
 //If any hazCond values matches the current weather Id, an alert should be displayed in the #warning section
-const hazCond = [200, 201, 202, 210, 211, 212, 221, 230, 231, 232, 501, 502, 503, 504, 511, 520, 521, 522, 531, 600, 601, 602, 611, 612, 813, 615, 616, 620, 621, 622, 781];
 
-let isHazardous = function (element, index, array) {
+
+/*let isHazardous = function (element, index, array) {
     return element === d.weather[0].id;
-}
+}*/
 
-function weatherAlert() {
+/*function weatherAlert() {
+    const hazCond = [200, 201, 202, 210, 211, 212, 221, 230, 231, 232, 501, 502, 503, 504, 511, 520, 521, 522, 531, 600, 601, 602, 611, 612, 813, 615, 616, 620, 621, 622, 781];
+  
+
+
     console.log(hazCond); //should console.log the hazCond array
     if (hazCond.some(isHazardous) === true) {
         document.getElementById('warning').innerHTML = '<h3>WEATHER WARNING: HAZARDOUS RIDING CONDITIONS</h3>';
@@ -64,10 +68,38 @@ function weatherAlert() {
         document.getElementById('warning').style.display = "none";
         console.log(hazCond.some(isHazardous)); //should console.log true or false
     };
-}
+}*/
+
+
+
+ /*weatherAlert = function(element) {    
+    let alert = 'ALERT';
+    if (d.weather[0].id == hazardId.some()) {
+      document.getElementById('warning').style.display = "none"; 
+    } else {
+      document.getElementById('warning').innerHTML = alert;
+        
+    }
+   
+  };*/
+  
+  
 
 //This function displays the current weather
 function drawWeather(d) {
+
+    const hazardId = [200, 201, 202, 210, 211, 212, 221, 230, 231, 232, 501, 502, 503, 504, 511, 520, 521, 522, 531, 600, 601, 602, 611, 612, 813, 615, 616, 620, 621, 622, 781];
+
+    let found = hazardId.find(function(element) {
+         return element ==  d.weather[0].id
+    })
+    if (found !== d.weather[0].id) {
+        document.getElementById('warning').style.display = "none"; 
+    };
+        console.log(found);
+        console.log(hazardId);
+    
+
     //var celcius = Math.round(parseFloat(d.main.temp)-273.15);
     let fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32);
     let description = d.weather[0].description;
@@ -85,13 +117,6 @@ function drawWeather(d) {
     document.getElementById('temp').innerHTML = fahrenheit + '&deg;F';
     document.getElementById('icon').innerHTML = weatherIcon;
 
-    if (description.indexOf('rain') > 0) {
-        document.weather.id = 'rainy';
-    } else if (description.indexOf('cloud') > 0) {
-        document.weather.id = 'cloudy';
-    } else if (description.indexOf('sunny') > 0) {
-        document.weather.id = 'sunny';
-    }
 }
 
 window.onload = function () {
@@ -154,7 +179,7 @@ function initMap() {
     map.data.loadGeoJson('https://www.rideindego.com/stations/json/');
 
     google.maps.event.addDomListener(window, 'load', initMap);
-};
+}
 
 //ADDRESS BAR INPUT & GEOCODER
 function geocodeAddress(geocoder, resultsMap) {
