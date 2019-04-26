@@ -11,9 +11,9 @@ A user can click on a map cycle marker to display an info-window that shows the:
 * name of the station 
 * address of station 
 * number of bikes currently available 
-* number of open docks available 
+* number of open docks currently available 
 
-Additionally this app has been integrated with the [OpenWeatherApp API](https://openweathermap.org/current) to display the current temperature and weather conditions. If the current weather conditions threaten to create hazardous riding conditions, a red weather alert banner will become visible above the weather header. 
+Additionally this app has been integrated with the [OpenWeatherMap API](https://openweathermap.org/current) to display the current temperature and weather conditions. If the current weather conditions threaten to create hazardous riding conditions, a red weather alert banner will become visible above the weather header. 
 
 ###### (*Checkboxes for "get a bike" and "return a bike" do not currently affect results.*)
 
@@ -31,7 +31,7 @@ Bash/Git, VSCode, Cyberduck, Postman, Chrome Devtools
 
 ### APIs and fun stuff:
 [Indego GeoJSON](https://www.rideindego.com/stations/json/) (added to a Google Map as a data layer)<br>
-[OpenWeatherApp API](https://openweathermap.org/current)<br>
+[OpenWeatherMap API](https://openweathermap.org/current)<br>
 [GoogleMaps API](https://developers.google.com/maps/documentation/javascript/tutorial)<br>
 [GoogleMaps Geocoding Service](https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple)
 
