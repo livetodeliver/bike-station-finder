@@ -1,40 +1,20 @@
-//'use strict';
+'use strict';
+
 const weatherKey = config.WEATHER_KEY;
 
 function returnBike() {
     // This function will filter markers to only display stations with open docks
-    // Eventlistener toggle click/check (submit does not need to be pressed)
-    /*if ((document.getElementById("bike-return").checked = true) && (docksAvailable === 0)) {
-        for (var i = 0; i < features.length; i++)
-          map.data.remove(features[i]);
-
-          returnBike.addEventListener( 'change', function() {
-            if(this.checked) {
-                // Checkbox is checked..
-            } */
-
 }
 
 function getBike() {
     // This function will filter markers to only display stations with available bikes
-    // Eventlistener toggle click/check (submit does not need to be pressed)
-    /*if ((document.getElementById("bike-get").checked = true) && (bikesAvailable === 0)) {
-         for (var i = 0; i < features.length; i++)
-           map.data.remove(features[i]);
-
-           let getBike = document.querySelector("#bike-get");
-     let returnBike = document.querySelector("#bike-return")
-
-     getBike.addEventListener( 'change', function() {
-         if(this.checked) {
-     };
-     } */
 }
 
 //WEATHER 
 
 // This function calls the Open Weather Map API to get current weather information.
 function getWeather(cityID) {
+
     fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID + '&appid=' + weatherKey)
         .then(function (resp) {
             return resp.json()
@@ -61,16 +41,18 @@ function drawWeather(d) {
     if (found == d.weather[0].id) {
         document.getElementById('warning').style.display = "block";
     };
+    // If console.log(found) returns 'undefined' there should not be a weather alert, 
+    //if it returns as 'true' weather alert should be seen. 
     console.log(found);
     console.log(hazardId);
 
-    let fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32);
-    let description = d.weather[0].description;
-    let weatherIcon = '<img src="http://openweathermap.org/img/w/' + d.weather[0].icon + '.png"/>';
+    const fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32);
+    const description = d.weather[0].description;
+    const weatherIcon = '<img src="http://openweathermap.org/img/w/' + d.weather[0].icon + '.png"/>';
 
 
     document.getElementById('location').innerHTML = d.name;
-    document.getElementById('description').innerHTML = d.weather[0].description;
+    document.getElementById('description').innerHTML = description;
     document.getElementById('temp').innerHTML = fahrenheit + '&deg;F';
     document.getElementById('icon').innerHTML = weatherIcon;
 }
@@ -84,7 +66,9 @@ window.onload = function () {
 
 function initMap() {
 
-    // Creates map and centers it on Philadelphia
+    /* Creates map and centers it on Philadelphia
+    This function also includes marker styling, the addition of a bike route layer to the map, 
+    and the creation and content for the infowindow */
 
     let map = new google.maps.Map(document.getElementById('map'), {
         zoom: 12,
@@ -94,14 +78,14 @@ function initMap() {
         }
     });
 
-    let geocoder = new google.maps.Geocoder();
+    const geocoder = new google.maps.Geocoder();
 
     document.getElementById('submit').addEventListener('click', function () {
         geocodeAddress(geocoder, map);
     });
 
     // Adds bike route layer to map
-    let bikeLayer = new google.maps.BicyclingLayer();
+    const bikeLayer = new google.maps.BicyclingLayer();
     bikeLayer.setMap(map);
 
     // Event listener for closing the infowindow
@@ -119,13 +103,15 @@ function initMap() {
     let infowindow = new google.maps.InfoWindow();
 
     map.data.addListener('click', function (event) {
-        var stationName = event.feature.getProperty("name");
-        var stationAddress = event.feature.getProperty("addressStreet");
-        var bikesAvailable = event.feature.getProperty("bikesAvailable");
-        var docksAvailable = event.feature.getProperty("docksAvailable");
-        infowindow.setContent("<div style='width:150px; font-size:14px'> <span style='font-weight: bold; font-style: italic; font-size:18px'>"+ stationName + 
-        "</span><br>" + stationAddress + 
-        "<p> <span style='font-weight: bolder'>Bikes Available: " + bikesAvailable + "<br>Open Docks: " + docksAvailable + "<s/pan></div>");
+        const stationName = event.feature.getProperty("name");
+        const stationAddress = event.feature.getProperty("addressStreet");
+        const bikesAvailable = event.feature.getProperty("bikesAvailable");
+        const docksAvailable = event.feature.getProperty("docksAvailable");
+        infowindow.setContent("<div style='width:150px; font-size:14px'> <span style='font-weight: bold; font-style: italic; font-size:18px'>" + stationName +
+            "</span><br>" + stationAddress +
+            "<p> <span style='font-weight: bolder'>Bikes Available: " 
+            + bikesAvailable + "<br>Open Docks: " + docksAvailable +
+            "</span></div>");
         infowindow.setPosition(event.feature.getGeometry().get());
         infowindow.setOptions({
             pixelOffset: new google.maps.Size(0, -30)
@@ -133,44 +119,52 @@ function initMap() {
         infowindow.open(map);
     });
 
-    // Loads GeoJSON data from Indego 
+    // Loads GeoJSON data onto map from Indego 
     map.data.loadGeoJson('https://www.rideindego.com/stations/json/');
-
-    //google.maps.event.addDomListener(window, 'load', initMap);
 }
 
+
 //ADDRESS BAR INPUT & GEOCODER
+
+/* This function connects with the address bar input to geocode the given location, 
+zoom the the location area, and creates a bouncing toggle marker for the given location. */
+
 function geocodeAddress(geocoder, resultsMap) {
 
-    let address = document.getElementById('address-box').value;
+    const address = document.getElementById('address-box').value;
 
     geocoder.geocode({
         'address': address
     }, function (results, status) {
-        if (status === 'OK') {
-            resultsMap.setCenter(results[0].geometry.location);
-            resultsMap.setZoom(15);
 
-            marker = new google.maps.Marker({
-                map: resultsMap,
-                draggable: true,
-                icon: {
-                    url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
-                },
-                animation: google.maps.Animation.DROP,
-                position: results[0].geometry.location,
-            });
-            marker.addListener('click', toggleBounce);
+        // Creates marker
+        let marker = new google.maps.Marker({
+            map: resultsMap,
+            draggable: true,
+            icon: {
+                url: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png"
+            },
+            animation: google.maps.Animation.DROP,
+            position: results[0].geometry.location,
+        });
+
+        // Creates toggle and animation for marker
+        function toggleBounce() {
+            if (marker.getAnimation() !== null) {
+                return marker.setAnimation(null);
+            } else {
+                return marker.setAnimation(google.maps.Animation.BOUNCE);
+            };
+        }
+        marker.addListener('click', toggleBounce)
+
+        // If geocode is successful, causes map to zoom in on location, if not returns an error alert
+        if (status === 'OK') {
+            return resultsMap.setCenter(results[0].geometry.location),
+                resultsMap.setZoom(15);
         } else {
-            alert('Geocode was not successful for the following reason: ' + status);
+            return alert('Geocode was not successful for the following reason: ' + status);
         };
     });
-}
 
-function toggleBounce() {
-    if (marker.getAnimation() !== null) {
-        marker.setAnimation(null);
-    } else {
-        marker.setAnimation(google.maps.Animation.BOUNCE);
-    };
 }
