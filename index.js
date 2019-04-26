@@ -1,4 +1,5 @@
 //'use strict';
+const weatherKey = config.WEATHER_KEY;
 
 function returnBike() {
     // This function will filter markers to only display stations with open docks
@@ -34,89 +35,44 @@ function getBike() {
 
 // This function calls the Open Weather Map API to get current weather information.
 function getWeather(cityID) {
-    const key = '5a4c2852796dfbb1add54c9a1eeb93b4';
-    fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID + '&appid=' + key)
+    fetch('https://api.openweathermap.org/data/2.5/weather?id=' + cityID + '&appid=' + weatherKey)
         .then(function (resp) {
             return resp.json()
         }) // Convert data to json
         .then(function (data) {
             drawWeather(data);
-            //weatherAlert(data);
         })
         .catch(function () {
             // catch any errors
         });
 }
 
-//This function should check the hazCond array to see if any of the values match the current weather id value. 
-//If any hazCond values matches the current weather Id, an alert should be displayed in the #warning section
-
-
-/*let isHazardous = function (element, index, array) {
-    return element === d.weather[0].id;
-}*/
-
-/*function weatherAlert() {
-    const hazCond = [200, 201, 202, 210, 211, 212, 221, 230, 231, 232, 501, 502, 503, 504, 511, 520, 521, 522, 531, 600, 601, 602, 611, 612, 813, 615, 616, 620, 621, 622, 781];
-  
-
-
-    console.log(hazCond); //should console.log the hazCond array
-    if (hazCond.some(isHazardous) === true) {
-        document.getElementById('warning').innerHTML = '<h3>WEATHER WARNING: HAZARDOUS RIDING CONDITIONS</h3>';
-    } else {
-        document.getElementById('warning').style.display = "none";
-        console.log(hazCond.some(isHazardous)); //should console.log true or false
-    };
-}*/
-
-
-
- /*weatherAlert = function(element) {    
-    let alert = 'ALERT';
-    if (d.weather[0].id == hazardId.some()) {
-      document.getElementById('warning').style.display = "none"; 
-    } else {
-      document.getElementById('warning').innerHTML = alert;
-        
-    }
-   
-  };*/
-  
-  
-
 //This function displays the current weather
 function drawWeather(d) {
 
     const hazardId = [200, 201, 202, 210, 211, 212, 221, 230, 231, 232, 501, 502, 503, 504, 511, 520, 521, 522, 531, 600, 601, 602, 611, 612, 813, 615, 616, 620, 621, 622, 781];
 
-    let found = hazardId.find(function(element) {
-         return element ==  d.weather[0].id
-    })
-    if (found !== d.weather[0].id) {
-        document.getElementById('warning').style.display = "none"; 
-    };
-        console.log(found);
-        console.log(hazardId);
-    
+    //This function should check the hazCond array to see if any of the values match the current weather id value. 
+    //If any hazCond values matches the current weather Id, an alert should be displayed in the #warning section
 
-    //var celcius = Math.round(parseFloat(d.main.temp)-273.15);
+    let found = hazardId.find(function (element) {
+        return element == d.weather[0].id;
+    });
+    if (found == d.weather[0].id) {
+        document.getElementById('warning').style.display = "block";
+    };
+    console.log(found);
+    console.log(hazardId);
+
     let fahrenheit = Math.round(((parseFloat(d.main.temp) - 273.15) * 1.8) + 32);
     let description = d.weather[0].description;
     let weatherIcon = '<img src="http://openweathermap.org/img/w/' + d.weather[0].icon + '.png"/>';
-
-
-    console.log(d.weather[0].icon);
-    console.log(weatherIcon);
-    console.log(d.weather[0].id);
-
 
 
     document.getElementById('location').innerHTML = d.name;
     document.getElementById('description').innerHTML = d.weather[0].description;
     document.getElementById('temp').innerHTML = fahrenheit + '&deg;F';
     document.getElementById('icon').innerHTML = weatherIcon;
-
 }
 
 window.onload = function () {
@@ -138,7 +94,7 @@ function initMap() {
         }
     });
 
-    var geocoder = new google.maps.Geocoder();
+    let geocoder = new google.maps.Geocoder();
 
     document.getElementById('submit').addEventListener('click', function () {
         geocodeAddress(geocoder, map);
@@ -160,14 +116,16 @@ function initMap() {
     });
 
     // When the user clicks, open an infowindow
-    var infowindow = new google.maps.InfoWindow();
+    let infowindow = new google.maps.InfoWindow();
 
     map.data.addListener('click', function (event) {
         var stationName = event.feature.getProperty("name");
         var stationAddress = event.feature.getProperty("addressStreet");
         var bikesAvailable = event.feature.getProperty("bikesAvailable");
         var docksAvailable = event.feature.getProperty("docksAvailable");
-        infowindow.setContent("<div style='width:150px; text-align: center;'>" + stationName + " <p> " + stationAddress + " <p> <span>Bikes Available: " + bikesAvailable + " </span><br><span>Open Docks: " + docksAvailable + "<span></div>");
+        infowindow.setContent("<div style='width:150px; font-size:14px'> <span style='font-weight: bold; font-style: italic; font-size:18px'>"+ stationName + 
+        "</span><br>" + stationAddress + 
+        "<p> <span style='font-weight: bolder'>Bikes Available: " + bikesAvailable + "<br>Open Docks: " + docksAvailable + "<s/pan></div>");
         infowindow.setPosition(event.feature.getGeometry().get());
         infowindow.setOptions({
             pixelOffset: new google.maps.Size(0, -30)
@@ -178,17 +136,13 @@ function initMap() {
     // Loads GeoJSON data from Indego 
     map.data.loadGeoJson('https://www.rideindego.com/stations/json/');
 
-    google.maps.event.addDomListener(window, 'load', initMap);
+    //google.maps.event.addDomListener(window, 'load', initMap);
 }
 
 //ADDRESS BAR INPUT & GEOCODER
 function geocodeAddress(geocoder, resultsMap) {
 
-    var address = document.getElementById('address-box').value;
-    // debugger;
-    console.log('HIIIIIII EVERYONE');
-
-
+    let address = document.getElementById('address-box').value;
 
     geocoder.geocode({
         'address': address
@@ -209,9 +163,8 @@ function geocodeAddress(geocoder, resultsMap) {
             marker.addListener('click', toggleBounce);
         } else {
             alert('Geocode was not successful for the following reason: ' + status);
-        }
+        };
     });
-
 }
 
 function toggleBounce() {
@@ -219,5 +172,5 @@ function toggleBounce() {
         marker.setAnimation(null);
     } else {
         marker.setAnimation(google.maps.Animation.BOUNCE);
-    }
+    };
 }

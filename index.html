@@ -12,6 +12,10 @@
 </head>
 
 <body>
+
+        <header role="alert" id="warning">
+                <h3>WEATHER WARNING: HAZARDOUS RIDING CONDITIONS</h3>
+        </header>
     <section role="banner" id="weather">
             <div role="complementary" id="location"></div>
             <h1 id="temp"></h1>
@@ -19,9 +23,7 @@
             <div role="complementary" id="description"></div>
     </section>
 
-    <section role="alert" id="warning">
-            <h3>WEATHER WARNING: HAZARDOUS RIDING CONDITIONS</h3>
-        </section>
+   
    
         
     <section role="search" class="finder">
@@ -51,10 +53,10 @@
         <div id="map"></div>
     </main>
 
+    <script src="config.js"></script>
     <script src="index.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script async defer
-        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDanp51JCnLBcnY84k2mSDg03OGvTXBdF8&callback=initMap">
+        src= "https://maps.googleapis.com/maps/api/js?key=AIzaSyDanp51JCnLBcnY84k2mSDg03OGvTXBdF8&callback=initMap">
     </script>
 </body>
 
