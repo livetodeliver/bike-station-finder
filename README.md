@@ -1,10 +1,11 @@
 # Philly Bikeshare Station Finder 
 
-[http://www.stacygrimes.com/phillyBikeShare/](http://www.stacygrimes.com/phillyBikeShare/) (Hosted on a Linode server)
+
 
 ## Summary:
 
-This app was created per instructions and requirements from [the P'unk Avenue frontend challenge](https://github.com/punkave/frontend-challenge).
+
+The [Philly Bikeshare Station Finder App (Hosted via GitHub Pages)](https://livetodeliver.github.io/bike-station-finder/) was created as a [hiring process challenge](https://github.com/punkave/frontend-challenge) for a developer position at [P'unk Avenue](https://www.punkave.com) (and I got the job! 🎉 ).
 
 This app allows a user to input an address or an intersection to see the closest [Indego](https://www.rideindego.com/) bikeshare stations.<br>
 A user can click on a map cycle marker to display an info-window that shows the:
